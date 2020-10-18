@@ -19,6 +19,8 @@ import CardContent from '@material-ui/core/CardContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 
+import GoogleMap from './map';
+
 import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -208,7 +210,52 @@ class assist extends Component {
 				<main className={classes.content}>
 					<div className={classes.toolbar} />
 
-					<Grid container spacing={2}>
+					<Grid container spacing={3} className='THE GRID' xs={12}>
+						<Grid item xs={4}>
+							{this.state.chores.map((chore) => (
+								<Grid item lg={4} zeroMinWidth>
+									<Card className={classes.root} variant='outlined'>
+										<CardContent>
+											<Typography variant='h5' component='h2'>
+												{chore.title}
+											</Typography>
+											<Typography className={classes.pos} color='textSecondary'>
+												{dayjs(chore.createdAt).fromNow()}{' '}
+												{chore.location ? '-' : ''} {`${chore.location}`}
+											</Typography>
+											<Typography variant='body2' component='p'>
+												{`${chore.body.substring(0, 65)}`}
+											</Typography>
+											<Typography variant='body2' component='p'>
+												{`${chore.type}`}
+											</Typography>
+										</CardContent>
+										<CardActions>
+											{/* <Button
+												size='small'
+												color='primary'
+												onClick={() => this.handleViewOpen({ chore })}
+											>
+												View
+											</Button> */}
+											<Button
+												size='small'
+												color='primary'
+												onClick={() => this.handleAccept({ chore })}
+											>
+												Accept
+											</Button>
+										</CardActions>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
+						<Grid item xs={8}>
+							<GoogleMap chores={this.state.chores} />
+						</Grid>
+					</Grid>
+
+					{/* <Grid container spacing={2}>
 						{this.state.chores.map((chore) => (
 							<Grid item lg={4} zeroMinWidth>
 								<Card className={classes.root} variant='outlined'>
@@ -246,7 +293,7 @@ class assist extends Component {
 								</Card>
 							</Grid>
 						))}
-					</Grid>
+					</Grid> */}
 
 					<Dialog
 						onClose={handleViewClose}

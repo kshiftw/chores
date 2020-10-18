@@ -142,7 +142,7 @@ class signup extends Component {
 								/>
 							</Grid>
 
-							<Grid item xs={12} sm={6}>
+							<Grid item xs={12}>
 								<TextField
 									variant='outlined'
 									required
@@ -157,7 +157,7 @@ class signup extends Component {
 								/>
 							</Grid>
 
-							<Grid item xs={12} sm={6}>
+							{/* <Grid item xs={12} sm={6}>
 								<TextField
 									variant='outlined'
 									required
@@ -171,7 +171,7 @@ class signup extends Component {
 									error={errors.phoneNumber ? true : false}
 									onChange={this.handleChange}
 								/>
-							</Grid>
+							</Grid> */}
 
 							<Grid item xs={12}>
 								<TextField
@@ -188,7 +188,7 @@ class signup extends Component {
 								/>
 							</Grid>
 
-							<Grid item xs={12}>
+							{/* <Grid item xs={12}>
 								<TextField
 									variant='outlined'
 									required
@@ -201,7 +201,7 @@ class signup extends Component {
 									error={errors.country ? true : false}
 									onChange={this.handleChange}
 								/>
-							</Grid>
+							</Grid> */}
 
 							<Grid item xs={12}>
 								<TextField

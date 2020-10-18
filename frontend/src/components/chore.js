@@ -380,60 +380,58 @@ class Chore extends Component {
 						</DialogActions>
 					</Dialog>
 
-					<Grid container spacing={3} className='THE GRID' xs={12}>
-						<Grid item xs={4}>
-							{this.state.chores.map((chore) => (
-								<Grid item lg={4} zeroMinWidth>
-									<Card
-										className={classes.root}
-										variant='outlined'
-										key={chore.title}
-									>
-										<CardContent>
-											<Typography variant='h5' component='h2'>
-												{chore.title}
-											</Typography>
-											<Typography className={classes.pos} color='textSecondary'>
-												{dayjs(chore.createdAt).fromNow()}{' '}
-												{chore.location ? '-' : ''} {`${chore.location}`}
-											</Typography>
-											<Typography variant='body2' component='p'>
-												{`${chore.body.substring(0, 65)}`}
-											</Typography>
-											<Typography variant='body2' component='p'>
-												{`${chore.type}`}
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Button
-												size='small'
-												color='primary'
-												onClick={() => this.handleViewOpen({ chore })}
-											>
-												View
-											</Button>
-											<Button
-												size='small'
-												color='primary'
-												onClick={() => this.handleEditClickOpen({ chore })}
-											>
-												Edit
-											</Button>
-											<Button
-												size='small'
-												color='primary'
-												onClick={() => this.deleteChoreHandler({ chore })}
-											>
-												Delete
-											</Button>
-										</CardActions>
-									</Card>
-								</Grid>
-							))}
-						</Grid>
-						<Grid item xs={8}>
+					<Grid container spacing={2} className='THE GRID' xs={12}>
+						{this.state.chores.map((chore) => (
+							<Grid item lg={4} zeroMinWidth>
+								<Card
+									className={classes.root}
+									variant='outlined'
+									key={chore.title}
+								>
+									<CardContent>
+										<Typography variant='h5' component='h2'>
+											{chore.title} - {chore.status}
+										</Typography>
+										<Typography className={classes.pos} color='textSecondary'>
+											{dayjs(chore.createdAt).fromNow()}{' '}
+											{chore.location ? '-' : ''} {`${chore.location}`}
+										</Typography>
+										<Typography variant='body2' component='p'>
+											{`${chore.body.substring(0, 65)}`}
+										</Typography>
+										<Typography variant='body2' component='p'>
+											{`${chore.type}`}
+										</Typography>
+									</CardContent>
+									<CardActions>
+										{/* <Button
+											size='small'
+											color='primary'
+											onClick={() => this.handleViewOpen({ chore })}
+										>
+											View
+										</Button> */}
+										<Button
+											size='small'
+											color='primary'
+											onClick={() => this.handleEditClickOpen({ chore })}
+										>
+											Edit
+										</Button>
+										<Button
+											size='small'
+											color='primary'
+											onClick={() => this.deleteChoreHandler({ chore })}
+										>
+											Delete
+										</Button>
+									</CardActions>
+								</Card>
+							</Grid>
+						))}
+						{/* <Grid item xs={8}>
 							<GoogleMap chores={this.state.chores} />
-						</Grid>
+						</Grid> */}
 					</Grid>
 
 					{/* <Dialog

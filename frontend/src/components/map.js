@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import './map.css';
 
 export class MapContainer extends Component {
 	state = {
@@ -27,7 +28,7 @@ export class MapContainer extends Component {
 	render() {
 		const { chores } = this.props;
 		return (
-			<div>
+			<div id='mapBox'>
 				<Map
 					initialCenter={{
 						lat: 49.27665409999999,
@@ -36,7 +37,7 @@ export class MapContainer extends Component {
 					google={this.props.google}
 					className='infowindowclass....'
 					style={{
-						width: '50%',
+						width: '30%',
 						height: '50%',
 						display: 'inline-block',
 					}}

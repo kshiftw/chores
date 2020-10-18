@@ -268,43 +268,6 @@ class account extends Component {
 									<Grid item md={6} xs={12}>
 										<TextField
 											fullWidth
-											label='Email'
-											margin='dense'
-											name='email'
-											variant='outlined'
-											disabled={true}
-											value={this.state.email}
-											onChange={this.handleChange}
-										/>
-									</Grid>
-									<Grid item md={6} xs={12}>
-										<TextField
-											fullWidth
-											label='Phone Number'
-											margin='dense'
-											name='phone'
-											type='number'
-											variant='outlined'
-											disabled={true}
-											value={this.state.phoneNumber}
-											onChange={this.handleChange}
-										/>
-									</Grid>
-									<Grid item md={6} xs={12}>
-										<TextField
-											fullWidth
-											label='User Name'
-											margin='dense'
-											name='userHandle'
-											disabled={true}
-											variant='outlined'
-											value={this.state.username}
-											onChange={this.handleChange}
-										/>
-									</Grid>
-									<Grid item md={6} xs={12}>
-										<TextField
-											fullWidth
 											label='Country'
 											margin='dense'
 											name='country'
