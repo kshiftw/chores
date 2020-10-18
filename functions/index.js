@@ -3,7 +3,8 @@ const app = require('express')();
 const auth = require('./util/auth');
 
 const {
-	getAllChores,
+	getMyChores,
+	getPendingChores,
 	getOneChore,
 	postOneChore,
 	deleteChore,
@@ -18,7 +19,8 @@ const {
 	updateUserDetails,
 } = require('./APIs/users');
 
-app.get('/chores', auth, getAllChores);
+app.get('/chores', auth, getMyChores);
+app.get('/pending_chores', auth, getPendingChores);
 app.get('/chore/:choreId', auth, getOneChore);
 app.post('/chore', auth, postOneChore);
 app.delete('/chore/:choreId', auth, deleteChore);
