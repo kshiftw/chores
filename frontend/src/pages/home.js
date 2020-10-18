@@ -19,11 +19,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import NotesIcon from '@material-ui/icons/Notes';
+import PersonIcon from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
+import CheckIcon from '@material-ui/icons/Check';
 import Avatar from '@material-ui/core/avatar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { authMiddleWare } from '../util/auth';
+
+import logo from '../images/choresback.png';
+import { grey } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
@@ -195,11 +201,13 @@ class home extends Component {
 			return (
 				<div className={classes.root}>
 					<CssBaseline />
-					<AppBar position='fixed' className={classes.appBar}>
+					<AppBar
+						position='fixed'
+						className={classes.appBar}
+						style={{ backgroundColor: '#d3d3d3' }}
+					>
 						<Toolbar>
-							<Typography variant='h6' noWrap>
-								Chores Backspace
-							</Typography>
+							<img style={{ height: '50px' }} src={logo}></img>
 						</Toolbar>
 					</AppBar>
 					<Drawer
@@ -229,7 +237,7 @@ class home extends Component {
 								selected={renderChore}
 							>
 								<ListItemIcon>
-									<NotesIcon />
+									<HomeIcon />
 								</ListItemIcon>
 								<ListItemText primary='My Chores' />
 							</ListItem>
@@ -253,7 +261,7 @@ class home extends Component {
 								selected={renderAccepted}
 							>
 								<ListItemIcon>
-									<NotesIcon />
+									<CheckIcon />
 								</ListItemIcon>
 								<ListItemText primary='Accepted' />
 							</ListItem>
@@ -265,7 +273,7 @@ class home extends Component {
 								selected={renderAccount}
 							>
 								<ListItemIcon>
-									<AccountBoxIcon />
+									<PersonIcon />
 								</ListItemIcon>
 								<ListItemText primary='Account' />
 							</ListItem>
