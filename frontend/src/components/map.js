@@ -37,16 +37,16 @@ export class MapContainer extends Component {
 					google={this.props.google}
 					className='infowindowclass....'
 					style={{
-						width: '30%',
-						height: '50%',
+						width: '50%',
+						height: '70%',
 						display: 'inline-block',
 					}}
-					zoom={10}
+					zoom={11}
 					onClick={this.onMapClicked}
 				>
 					{chores.map((chore) => (
 						<Marker
-							name={chore.title}
+							name={chore.title + ' - ' + chore.location}
 							onClick={this.onMarkerClick}
 							position={{ lat: chore.latitude, lng: chore.longitude }}
 						></Marker>
@@ -56,7 +56,7 @@ export class MapContainer extends Component {
 						visible={this.state.showingInfoWindow}
 					>
 						<div>
-							<h1>{this.state.selectedPlace.name}</h1>
+							<h4>{this.state.selectedPlace.name}</h4>
 						</div>
 					</InfoWindow>
 				</Map>

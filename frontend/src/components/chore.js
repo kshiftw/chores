@@ -390,17 +390,22 @@ class Chore extends Component {
 								>
 									<CardContent>
 										<Typography variant='h5' component='h2'>
-											{chore.title} - {chore.status}
+											{chore.title}
 										</Typography>
 										<Typography className={classes.pos} color='textSecondary'>
-											{dayjs(chore.createdAt).fromNow()}{' '}
-											{chore.location ? '-' : ''} {`${chore.location}`}
+											{dayjs(chore.createdAt).fromNow()}
+										</Typography>
+										<Typography variant='body2' component='p'>
+											Status: {`${chore.status}`}
+										</Typography>
+										<Typography variant='body2' component='p'>
+											Location: {`${chore.location}`}
+										</Typography>
+										<Typography variant='body2' component='p'>
+											Chore Type: {`${chore.type}`}
 										</Typography>
 										<Typography variant='body2' component='p'>
 											{`${chore.body.substring(0, 65)}`}
-										</Typography>
-										<Typography variant='body2' component='p'>
-											{`${chore.type}`}
 										</Typography>
 									</CardContent>
 									<CardActions>

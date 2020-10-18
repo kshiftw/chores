@@ -48,6 +48,7 @@ exports.getPendingChores = (request, response) => {
 						username: doc.data().username,
 						body: doc.data().body,
 						type: doc.data().type,
+						status: doc.data().status,
 						location: doc.data().location,
 						latitude: doc.data().latitude,
 						longitude: doc.data().longitude,

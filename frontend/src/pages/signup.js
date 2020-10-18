@@ -74,8 +74,8 @@ class signup extends Component {
 		const newUserData = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
-			phoneNumber: this.state.phoneNumber,
-			country: this.state.country,
+			phoneNumber: '',
+			country: '',
 			username: this.state.username,
 			email: this.state.email,
 			password: this.state.password,
@@ -245,9 +245,7 @@ class signup extends Component {
 								!this.state.password ||
 								!this.state.firstName ||
 								!this.state.lastName ||
-								!this.state.country ||
-								!this.state.username ||
-								!this.state.phoneNumber
+								!this.state.username
 							}
 						>
 							Sign Up
