@@ -222,28 +222,48 @@ class home extends Component {
 						</center>
 						<Divider />
 						<List>
-							<ListItem button key='Chore' onClick={this.loadChorePage}>
+							<ListItem
+								button
+								key='Chore'
+								onClick={this.loadChorePage}
+								selected={renderChore}
+							>
 								<ListItemIcon>
 									<NotesIcon />
 								</ListItemIcon>
 								<ListItemText primary='My Chores' />
 							</ListItem>
 
-							<ListItem button key='Assist' onClick={this.loadAssistPage}>
+							<ListItem
+								button
+								key='Assist'
+								onClick={this.loadAssistPage}
+								selected={renderAssist}
+							>
 								<ListItemIcon>
 									<NotesIcon />
 								</ListItemIcon>
 								<ListItemText primary='Assist' />
 							</ListItem>
 
-							<ListItem button key='Accepted' onClick={this.loadAcceptedPage}>
+							<ListItem
+								button
+								key='Accepted'
+								onClick={this.loadAcceptedPage}
+								selected={renderAccepted}
+							>
 								<ListItemIcon>
 									<NotesIcon />
 								</ListItemIcon>
 								<ListItemText primary='Accepted' />
 							</ListItem>
 
-							<ListItem button key='Account' onClick={this.loadAccountPage}>
+							<ListItem
+								button
+								key='Account'
+								onClick={this.loadAccountPage}
+								selected={renderAccount}
+							>
 								<ListItemIcon>
 									<AccountBoxIcon />
 								</ListItemIcon>

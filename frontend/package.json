@@ -36,5 +36,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5001/chores-32286/us-central1/api"
+  "proxy": "https://us-central1-chores-32286.cloudfunctions.net/api"
 }

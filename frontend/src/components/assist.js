@@ -217,16 +217,14 @@ class assist extends Component {
 											{chore.title}
 										</Typography>
 										<Typography className={classes.pos} color='textSecondary'>
-											{dayjs(chore.createdAt).fromNow()}
+											{dayjs(chore.createdAt).fromNow()}{' '}
+											{chore.location ? '-' : ''} {`${chore.location}`}
 										</Typography>
 										<Typography variant='body2' component='p'>
 											{`${chore.body.substring(0, 65)}`}
 										</Typography>
 										<Typography variant='body2' component='p'>
 											{`${chore.type}`}
-										</Typography>
-										<Typography variant='body2' component='p'>
-											{`${chore.location}`}
 										</Typography>
 									</CardContent>
 									<CardActions>
