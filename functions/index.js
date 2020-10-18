@@ -5,10 +5,13 @@ const auth = require('./util/auth');
 const {
 	getMyChores,
 	getPendingChores,
+	getAcceptedChores,
 	getOneChore,
 	postOneChore,
 	deleteChore,
 	editChore,
+	acceptChore,
+	completeChore,
 } = require('./APIs/chores');
 
 const {
@@ -21,10 +24,13 @@ const {
 
 app.get('/chores', auth, getMyChores);
 app.get('/pending_chores', auth, getPendingChores);
+app.get('/accepted_chores', auth, getAcceptedChores);
 app.get('/chore/:choreId', auth, getOneChore);
 app.post('/chore', auth, postOneChore);
 app.delete('/chore/:choreId', auth, deleteChore);
 app.put('/chore/:choreId', auth, editChore);
+app.put('/accept_chore/:choreId', auth, acceptChore);
+app.put('/complete_chore/:choreId', auth, completeChore);
 
 app.post('/login', loginUser);
 app.post('/signup', signUpUser);

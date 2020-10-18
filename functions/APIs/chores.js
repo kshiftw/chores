@@ -1,6 +1,6 @@
 const { db } = require('../util/admin');
 
-exports.getAllChores = (request, response) => {
+exports.getMyChores = (request, response) => {
 	db.collection('chores')
 		.where('username', '==', request.user.username)
 		.orderBy('createdAt', 'desc')
@@ -13,6 +13,67 @@ exports.getAllChores = (request, response) => {
 					title: doc.data().title,
 					username: doc.data().username,
 					body: doc.data().body,
+					type: doc.data().type,
+					location: doc.data().location,
+					status: doc.data().status,
+					createdAt: doc.data().createdAt,
+				});
+			});
+			return response.json(chores);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
+exports.getPendingChores = (request, response) => {
+	db.collection('chores')
+		.orderBy('createdAt', 'desc')
+		.get()
+		.then((data) => {
+			let chores = [];
+			data.forEach((doc) => {
+				if (
+					doc.data().username != request.user.username &&
+					doc.data().accepted_by != request.user.username &&
+					doc.data().status == 'requested'
+				) {
+					chores.push({
+						choreId: doc.id,
+						title: doc.data().title,
+						username: doc.data().username,
+						body: doc.data().body,
+						type: doc.data().type,
+						location: doc.data().location,
+						createdAt: doc.data().createdAt,
+					});
+				}
+			});
+			return response.json(chores);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
+exports.getAcceptedChores = (request, response) => {
+	db.collection('chores')
+		.where('accepted_by', '==', request.user.username)
+		.orderBy('createdAt', 'desc')
+		.get()
+		.then((data) => {
+			let chores = [];
+			data.forEach((doc) => {
+				chores.push({
+					choreId: doc.id,
+					title: doc.data().title,
+					username: doc.data().username,
+					body: doc.data().body,
+					type: doc.data().type,
+					location: doc.data().location,
+					status: doc.data().status,
 					createdAt: doc.data().createdAt,
 				});
 			});
@@ -59,6 +120,10 @@ exports.postOneChore = (request, response) => {
 		title: request.body.title,
 		username: request.user.username,
 		body: request.body.body,
+		type: request.body.type,
+		location: request.body.location,
+		status: 'requested',
+		accepted_by: '',
 		createdAt: new Date().toISOString(),
 	};
 
@@ -108,6 +173,48 @@ exports.editChore = (request, response) => {
 	let document = db.collection('chores').doc(`${request.params.choreId}`);
 	document
 		.update(request.body)
+		.then((doc) => {
+			response.json({ message: 'Updated successfully' });
+		})
+		.catch((error) => {
+			if (error.code === 5) {
+				response.status(404).json({ message: 'Not Found' });
+			}
+			console.error(error);
+			return response.status(500).json({
+				error: error.code,
+			});
+		});
+};
+
+exports.acceptChore = (request, response) => {
+	let document = db.collection('chores').doc(`${request.params.choreId}`);
+	document
+		.update({
+			accepted_by: request.user.username,
+			status: 'accepted',
+		})
+		.then((doc) => {
+			response.json({ message: 'Updated successfully' });
+		})
+		.catch((error) => {
+			if (error.code === 5) {
+				response.status(404).json({ message: 'Not Found' });
+			}
+			console.error(error);
+			return response.status(500).json({
+				error: error.code,
+			});
+		});
+};
+
+exports.completeChore = (request, response) => {
+	let document = db.collection('chores').doc(`${request.params.choreId}`);
+	document
+		.update({
+			status: 'completed',
+			completedAt: new Date().toISOString(),
+		})
 		.then((doc) => {
 			response.json({ message: 'Updated successfully' });
 		})
