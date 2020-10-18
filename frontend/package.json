@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "dayjs": "^1.9.3",
+    "google-maps-react": "^2.0.6",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
@@ -36,5 +37,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-chores-32286.cloudfunctions.net/api"
+  "proxy": "http://localhost:5001/chores-32286/us-central1/api"
 }

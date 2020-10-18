@@ -1,4 +1,5 @@
 const { db } = require('../util/admin');
+const NodeGeocoder = require('node-geocoder');
 
 exports.getMyChores = (request, response) => {
 	db.collection('chores')
@@ -15,6 +16,8 @@ exports.getMyChores = (request, response) => {
 					body: doc.data().body,
 					type: doc.data().type,
 					location: doc.data().location,
+					latitude: doc.data().latitude,
+					longitude: doc.data().longitude,
 					status: doc.data().status,
 					createdAt: doc.data().createdAt,
 				});
@@ -46,6 +49,8 @@ exports.getPendingChores = (request, response) => {
 						body: doc.data().body,
 						type: doc.data().type,
 						location: doc.data().location,
+						latitude: doc.data().latitude,
+						longitude: doc.data().longitude,
 						createdAt: doc.data().createdAt,
 					});
 				}
@@ -73,6 +78,8 @@ exports.getAcceptedChores = (request, response) => {
 					body: doc.data().body,
 					type: doc.data().type,
 					location: doc.data().location,
+					latitude: doc.data().latitude,
+					longitude: doc.data().longitude,
 					status: doc.data().status,
 					createdAt: doc.data().createdAt,
 				});
@@ -107,7 +114,7 @@ exports.getOneChore = (request, response) => {
 		});
 };
 
-exports.postOneChore = (request, response) => {
+exports.postOneChore = async (request, response) => {
 	if (request.body.body.trim() === '') {
 		return response.status(400).json({ body: 'Must not be empty' });
 	}
@@ -116,12 +123,32 @@ exports.postOneChore = (request, response) => {
 		return response.status(400).json({ title: 'Must not be empty' });
 	}
 
+	const options = {
+		provider: 'google',
+
+		// Optional depending on the providers
+		// fetch: customFetchImplementation,
+		apiKey: 'AIzaSyBaR5mIl1BV8M9GlFSlpokpRRUPuLJzS2o', // for Mapquest, OpenCage, Google Premier
+		formatter: null, // 'gpx', 'string', ...
+	};
+
+	const geocoder = NodeGeocoder(options);
+	let geocode_result;
+	// Using callback
+	if (request.body.location) {
+		geocode_result = await geocoder.geocode(request.body.location);
+	} else {
+		geocode_result = [{ latitude: '', longitude: '' }];
+	}
+
 	const newChoreItem = {
 		title: request.body.title,
 		username: request.user.username,
 		body: request.body.body,
 		type: request.body.type,
 		location: request.body.location,
+		latitude: geocode_result[0].latitude,
+		longitude: geocode_result[0].longitude,
 		status: 'requested',
 		accepted_by: '',
 		createdAt: new Date().toISOString(),

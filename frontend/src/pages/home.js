@@ -279,7 +279,7 @@ class home extends Component {
 						</List>
 					</Drawer>
 
-					<div>{subpage}</div>
+					<div style={{ width: '80%' }}>{subpage}</div>
 				</div>
 			);
 		}
