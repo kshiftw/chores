@@ -1,7 +1,7 @@
 ## Description
 With COVID-19, people are now facing many more challenges than they had before. Introducing Chores Backspace, when there may come a time when you find yourself in need of help to complete a chore. Remove those chores off your list by accessing the application and requesting for help. Whether you are a senior who needs a helping hand or a working parent who just can’t find the time, this application connects those who are in need with those who are willing to help. 
 
-This app was created during the 2 day DubHacks 2020 hackathon. 
+This app was created during the 2 day DubHacks 2020 hackathon (https://devpost.com/software/chores). 
 
 ## Video Demo
 https://vimeo.com/469497752
